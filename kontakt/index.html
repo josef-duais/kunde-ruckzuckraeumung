@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-
+<link rel="preload" as="image" type="image/webp" href="/bilder/hero/seite-kontakt.webp" media="(min-width: 900px)" fetchpriority="high">
 <link rel="stylesheet" href="/styles.css?v=3">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.ruckzuck-entruempelung-herten.de/"}, {"@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://www.ruckzuck-entruempelung-herten.de/kontakt/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ContactPage", "url": "https://www.ruckzuck-entruempelung-herten.de/kontakt/", "about": {"@id": "https://www.ruckzuck-entruempelung-herten.de/#firma"}}</script>
 </head>
@@ -50,10 +50,9 @@
         <li class="has-sub">
           <a href="/#einsatzgebiete" class="nav-link">Einsatzgebiete</a>
           <button class="sub-toggle" aria-expanded="false" aria-label="Einsatzgebiete-Menü öffnen"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-chevron"/></svg></button>
-          <div class="sub sub-orte"><ul><li><a href="/einsatzgebiete/herten/">Herten</a></li><li><a href="/einsatzgebiete/recklinghausen/">Recklinghausen</a></li><li><a href="/einsatzgebiete/marl/">Marl</a></li><li><a href="/einsatzgebiete/gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/einsatzgebiete/gladbeck/">Gladbeck</a></li><li><a href="/einsatzgebiete/bochum/">Bochum</a></li><li><a href="/einsatzgebiete/essen/">Essen</a></li><li><a href="/einsatzgebiete/dortmund/">Dortmund</a></li></ul><a class="sub-all" href="/#einsatzgebiete">Weitere Orte <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a></div>
+          <div class="sub sub-orte"><ul><li><a href="/umzug-herten/">Herten</a></li><li><a href="/umzug-recklinghausen/">Recklinghausen</a></li><li><a href="/umzug-marl/">Marl</a></li><li><a href="/umzug-gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/umzug-gladbeck/">Gladbeck</a></li><li><a href="/umzug-bochum/">Bochum</a></li><li><a href="/umzug-essen/">Essen</a></li><li><a href="/umzug-dortmund/">Dortmund</a></li></ul><a class="sub-all" href="/#einsatzgebiete">Weitere Orte <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a></div>
         </li>
         <li><a href="/galerie/" class="nav-link">Galerie</a></li>
-        <li><a href="/bewertungen/" class="nav-link">Bewertungen</a></li>
         <li><a href="/ueber-uns/" class="nav-link">Über uns</a></li>
         <li><a href="/kontakt/" class="nav-link">Kontakt</a></li>
       </ul>
@@ -69,17 +68,24 @@
 </header>
 <main id="inhalt">
 <nav class="crumbs" aria-label="Brotkrumen"><ol class="wrap"><li><a href="/">Startseite</a></li><li aria-current="page">Kontakt</li></ol></nav>
-<section class="hero hero-sub" aria-labelledby="hero-h">
+<section class="hero hero-sub has-bg" style="--hero-bg:url('/bilder/hero/seite-kontakt.webp')" aria-labelledby="hero-h">
   <div class="wrap hero-grid">
     <div class="hero-copy">
+      
       <p class="eyebrow eyebrow-light">Kontakt</p>
       <h1 id="hero-h">Kontakt: So erreichen Sie Ruckzuckräumung</h1>
       <p class="hero-lead">Rufen Sie an, schreiben Sie per WhatsApp oder nutzen Sie das Formular – wir melden uns persönlich und vereinbaren eine kostenlose Besichtigung.</p>
       <ul class="hero-checks"><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg><span>Telefon &amp; WhatsApp: 0177 6126333</span></li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg><span>Mo–Sa 8–18 Uhr</span></li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg><span>Besichtigung kostenlos</span></li></ul>
+      <div class="owner-card">
+        <span class="owner-av" aria-hidden="true">LK</span>
+        <p><strong>Lucien Fynn Khaouli</strong> · Inhaber<br><span>Ihr fester Ansprechpartner – direkt erreichbar per Telefon &amp; WhatsApp.</span></p>
+        <a class="owner-call" href="tel:+491776126333" aria-label="Inhaber direkt anrufen"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-phone"/></svg></a>
+      </div>
       <div class="hero-btns">
         <a class="btn btn-primary btn-lg" href="#anfrage">Kostenloses Angebot anfordern</a>
         <a class="btn btn-ghost btn-lg" href="tel:+491776126333"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-phone"/></svg> 0177 6126333</a>
       </div>
+      <ul class="hero-urgency"><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-clock"/></svg>Kurzfristige Termine möglich – auch samstags</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-tag"/></svg>10 % Neukunden-Rabatt auf den ersten Auftrag</li></ul>
     </div>
     <div class="hero-form" id="anfrage"><form class="lead-form" id="form-kontaktseite" action="https://formsubmit.co/ruckzuckraeumung@web.de" method="POST">
   <p class="lead-title">Kostenloses Angebot anfordern</p>
@@ -106,6 +112,7 @@
   <p class="lead-note"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg> 100 % kostenlos &amp; unverbindlich <span class="sep">·</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-tag"/></svg> 10 % Neukunden-Rabatt</p>
 </form></div>
   </div>
+  
 </section>
 <section class="sec sec-light" aria-labelledby="nap-h">
   <div class="wrap split">
@@ -138,18 +145,22 @@
     </div>
   </div>
 </section>
-<section class="sec sec-soft" id="bewertungen" aria-labelledby="bew-h">
-  <div class="wrap center">
-    <p class="eyebrow">Bewertungen</p>
-    <h2 id="bew-h">Bewertungen aus der Region</h2>
-    <p class="sec-sub">Zufriedene Kunden sind unsere beste Werbung. Waren Sie mit unserer Arbeit zufrieden? Dann freuen wir uns über Ihre Bewertung.</p>
-    <div class="reviews-widget"><!-- TODO: {{GHL_BEWERTUNGEN_EMBED}} in _build/daten.py eintragen – wird dann automatisch consent-gated geladen -->
-<div class="reviews-empty">
-  <div class="stars stars-empty" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg></div>
-  <p class="reviews-empty-title">Noch keine Online-Bewertungen – geben Sie die erste ab!</p>
-  <p>Wir sind neu online. Ihre ehrliche Meinung nach dem Auftrag hilft anderen Kundinnen und Kunden aus der Region bei der Entscheidung.</p>
-</div></div>
-    <a class="btn btn-dark" href="/bewerten/"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg> Bewerten Sie uns</a>
+<section class="sec sec-light garantien" aria-labelledby="gar-h">
+  <div class="wrap">
+    <div class="center"><p class="eyebrow">Unser Versprechen</p><h2 id="gar-h">Unsere Garantien für Sie</h2></div>
+    <div class="adv-grid adv-grid-3"><article class="adv garantie"><span class="adv-ic"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg></span><h3>Kostenlos &amp; unverbindlich</h3><p>Besichtigung und Angebot kosten Sie nichts. Sie entscheiden danach in Ruhe – ohne Verpflichtung.</p></article><article class="adv garantie"><span class="adv-ic"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-tag"/></svg></span><h3>Preis steht vorher fest</h3><p>Sie erhalten vor dem Einsatz ein schriftliches Angebot. Keine versteckten Kosten, keine Überraschungen.</p></article><article class="adv garantie"><span class="adv-ic"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-leaf"/></svg></span><h3>Besenreine Übergabe</h3><p>Wir übergeben die Räume leer und besenrein – fachgerecht getrennt und entsorgt.</p></article></div>
+    <div class="urgency-bar">
+      <p><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-clock"/></svg><strong>Kurzfristige Termine möglich</strong> – Mo–Sa 8–18 Uhr. Je früher Sie anfragen, desto eher klappt Ihr Wunschtermin.</p>
+      <a class="btn btn-primary" href="#anfrage">Jetzt Termin sichern <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+<section class="sec sec-soft referenzen" aria-labelledby="ref-h">
+  <div class="wrap">
+    <div class="center"><p class="eyebrow">Referenzen</p><h2 id="ref-h">Referenzen: echte Aufträge aus der Region</h2>
+      <p class="sec-sub">Keine Symbolbilder: Diese Fotos stammen aus unseren eigenen Umzügen, Entrümpelungen und Montagen.</p></div>
+    <div class="gallery gallery-cap"><figure><a href="/bilder/kunde/gross/img_0065.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0065-klein.webp" alt="Vollgestellter Raum vor der Entrümpelung" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Vollgestellter Raum vor der Entrümpelung</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0060.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0060-klein.webp" alt="Voll beladener Transporter mit Kartons und Möbeln" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Voll beladener Transporter mit Kartons und Möbeln</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0068.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0068-klein.webp" alt="Kellerraum nach der Räumung – besenrein" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Kellerraum nach der Räumung – besenrein</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0538.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0538-klein.webp" alt="Leeres, besenreines Zimmer nach der Wohnungsauflösung" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Leeres, besenreines Zimmer nach der Wohnungsauflösung</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0523.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0523-klein.webp" alt="Montage eines weißen Sideboards" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Montage eines weißen Sideboards</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0051.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0051-klein.webp" alt="Abbau einer TV-Wand vor dem Umzug" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Abbau einer TV-Wand vor dem Umzug</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0063.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0063-klein.webp" alt="Zugestellte Kammer vor der Räumung" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Zugestellte Kammer vor der Räumung</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0515.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0515-klein.webp" alt="Wohnzimmer mitten im Umzug" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Wohnzimmer mitten im Umzug</figcaption></figure></div>
+    <div class="center"><a class="btn btn-primary" href="/galerie/">Alle Referenzen ansehen <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a></div>
   </div>
 </section>
 </main>
@@ -166,7 +177,7 @@
     </div>
     <div>
       <p class="f-title">Einsatzgebiete</p>
-      <ul class="f-list"><li><a href="/einsatzgebiete/herten/">Herten</a></li><li><a href="/einsatzgebiete/recklinghausen/">Recklinghausen</a></li><li><a href="/einsatzgebiete/marl/">Marl</a></li><li><a href="/einsatzgebiete/gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/einsatzgebiete/gladbeck/">Gladbeck</a></li><li><a href="/einsatzgebiete/bochum/">Bochum</a></li><li><a href="/einsatzgebiete/essen/">Essen</a></li><li><a href="/einsatzgebiete/dortmund/">Dortmund</a></li></ul>
+      <ul class="f-list"><li><a href="/umzug-herten/">Herten</a></li><li><a href="/umzug-recklinghausen/">Recklinghausen</a></li><li><a href="/umzug-marl/">Marl</a></li><li><a href="/umzug-gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/umzug-gladbeck/">Gladbeck</a></li><li><a href="/umzug-bochum/">Bochum</a></li><li><a href="/umzug-essen/">Essen</a></li><li><a href="/umzug-dortmund/">Dortmund</a></li></ul>
       <a class="f-more" href="/einsatzgebiete/">Alle Einsatzgebiete <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a>
     </div>
     <div>
@@ -188,6 +199,7 @@
     <p>© <span data-year>2026</span> Ruckzuckräumung Umzüge &amp; Entrümpelung</p>
     <nav aria-label="Rechtliches" class="legal">
       <a href="/kontakt/">Kontakt</a>
+      <a href="/bewerten/">Bewertung abgeben</a>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
       <button type="button" class="link-btn" data-cookie-settings>Cookie-Einstellungen</button>

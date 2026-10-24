@@ -3,20 +3,29 @@
 Statische Website (HTML5 + CSS + Vanilla-JS) für **Ruckzuckräumung & Umzüge-Entrümpelung**, Herten.
 Läuft direkt aus `public_html` auf Hostinger – kein Framework, kein Server-Build. Repo-Root = Web-Root.
 
-## Gebaute Seiten (2.287 öffentliche Seiten, alle in `sitemap.xml`)
+## Gebaute Seiten (200 URLs = Startseite + 199 Unterseiten, alle in `sitemap.xml`)
+
+Bewusst auf **max. 200 Unterseiten** begrenzt (neue Domain → Google indexiert lieber wenige starke Seiten).
 
 | Bereich | Anzahl | URLs |
 |---|---|---|
 | Startseite | 1 | `/` |
-| Kernseiten | 6 | `/ueber-uns/`, `/galerie/`, `/kontakt/`, `/bewertungen/`, `/impressum/`, `/datenschutz/` |
+| Kernseiten | 5 | `/ueber-uns/`, `/galerie/`, `/kontakt/`, `/impressum/`, `/datenschutz/` |
 | Funnel-Seiten | 3 | `/bewerten/`, `/rabatt/`, `/danke/` |
 | Leistungsseiten | 10 | `/umzug/`, `/firmenumzug/`, `/seniorenumzug/`, `/entruempelung/`, `/haushaltsaufloesung/`, `/wohnungsaufloesung/`, `/kellerentruempelung/`, `/messie-wohnung-entruempeln/`, `/moebelmontage/`, `/kuechenmontage/` |
-| Kombi-Seiten (Leistung × Stadt) | 2.060 | `/<leistung>-<stadt>/`, z. B. `/umzug-essen/`, `/entruempelung-dorsten/` |
-| Stadt-Archive | 206 | `/einsatzgebiete/<stadt>/`, z. B. `/einsatzgebiete/marl/` |
-| Einsatzgebiete-Hub | 1 | `/einsatzgebiete/` (nur im Footer verlinkt) |
-| **Nicht gebaut** | – | `/kunden-bewertung/` (Admin) – GHL-Embed fehlt, siehe unten |
+| Kombi-Seiten (Leistung × Stadt) | 180 | `/<leistung>-<stadt>/` für 18 Städte, z. B. `/umzug-essen/`, `/entruempelung-marl/` |
+| Einsatzgebiete | 1 | `/einsatzgebiete/` (18 Städte als Bildkarten + 100-km-Radius) |
+| **Nicht gebaut** | – | `/kunden-bewertung/` (Admin) – GHL-Embed fehlt |
 
-Einsatzgebiet: alle 206 Städte mit Stadtrecht im Umkreis von 100 km um Herten (Daten: Wikidata, `_build/staedte.json`).
+Städte mit eigenen Seiten (`SEITEN_STAEDTE` in `daten.py`): Herten, Recklinghausen, Marl, Gladbeck, Dorsten, Castrop-Rauxel,
+Datteln, Oer-Erkenschwick, Haltern am See, Waltrop (= ganzer Kreis Recklinghausen) + Gelsenkirchen, Bochum, Essen, Dortmund,
+Herne, Bottrop, Oberhausen, Lünen. Einsatzgebiet bleibt 100 km.
+
+Jede Unterseite: Hero mit scharfem Hintergrundbild (Stadtfoto bzw. Leistungs-/Kundenfoto), klare H1 mit Leistung + Stadt,
+Formular rechts, Inhaber + Telefon, Umfang · Stadt · Dringlichkeit · Garantie, Referenzen-Abschnitt mit echten Kundenfotos.
+
+**Bewertungs-Sterne:** werden nur angezeigt, wenn echte Bewertungen existieren – `BEWERTUNGEN` in `daten.py` eintragen
+(Anzahl, Schnitt, Quelle, Link). Dann erscheinen goldene Sterne oben auf jeder Seite. Keine erfundenen Zahlen.
 
 ## Struktur
 
@@ -35,7 +44,7 @@ kunde-ruckzuckraeumung/        ← Repo-Root = public_html
     ├── texte.py, pools.py ← Content-Engine (Texte aus echten Stadtdaten)
     ├── optimierung.py, salts.json ← hält jede Seite < 25 % Ähnlichkeit
     ├── pruefen.py, aehnlichkeit.py ← Qualitätsprüfung
-    ├── staedte_holen.py, stadtbilder_holen.py, bilder.py ← Daten/Bilder (nur bei Bedarf neu holen)
+    ├── staedte_holen.py, stadtbilder_holen.py, hero_bilder.py, bilder.py ← Daten/Bilder (nur bei Bedarf neu holen)
     └── kunden-bewertung.htaccess.beispiel ← Basic-Auth-Vorlage für den Admin-Bereich
 ```
 
@@ -70,7 +79,7 @@ Ist das Repo privat, in hPanel den angezeigten Deploy-Key in GitHub → Settings
 | Variable | Platzhalter | Wird eingesetzt auf | Status |
 |---|---|---|---|
 | `GHL_CHAT_WIDGET_SNIPPET` | `{{GHL_CHAT_WIDGET_SNIPPET}}` | allen Seiten vor `</body>` | fehlt → Chat-Button öffnet WhatsApp |
-| `GHL_BEWERTUNGEN_EMBED` | `{{GHL_BEWERTUNGEN_EMBED}}` | Bewertungs-Abschnitt aller Seiten | fehlt → Hinweis „Noch keine Online-Bewertungen“ |
+| `GHL_BEWERTUNGEN_EMBED` | `{{GHL_BEWERTUNGEN_EMBED}}` | Bewertungs-Abschnitt aller Seiten | fehlt → Abschnitt wird ausgeblendet (kein Platzhalter) |
 | `GHL_SURVEY_EMBED` | `{{GHL_SURVEY_EMBED}}` | `/bewerten/` | fehlt → natives Bewertungsformular (FormSubmit) |
 | `GHL_RABATT_FORMULAR_EMBED` | `{{GHL_RABATT_FORMULAR_EMBED}}` | `/rabatt/` | fehlt → natives Rabatt-Formular (FormSubmit) |
 | `GHL_KUNDENBEWERTUNG_EMBED` | `{{GHL_KUNDENBEWERTUNG_EMBED}}` | `/kunden-bewertung/` (Admin) | fehlt → Seite wird nicht gebaut |

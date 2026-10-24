@@ -1,4 +1,5 @@
-"""Phase 3: Kernseiten (Über uns, Galerie, Kontakt, Bewertungen, Impressum, Datenschutz) + Funnel (/bewerten/, /rabatt/, /danke/).
+"""Kernseiten (Über uns, Galerie, Kontakt, Impressum, Datenschutz) + Funnel (/bewerten/, /rabatt/, /danke/).
+Jede Seite: Hero mit Hintergrundbild + Formular, Referenzen-Abschnitt mit echten Kundenfotos. Keine Bewertungs-Platzhalter.
 
 /kunden-bewertung/ (Admin) wird nur gebaut, wenn GHL_KUNDENBEWERTUNG_EMBED in daten.py gesetzt ist.
 Impressum und Datenschutz sind wortgetreu aus den gelieferten Rechtstexten übernommen (keine eigenen Rechtstexte).
@@ -32,12 +33,12 @@ GALERIE = [
 ]
 
 
-def seite(url, title, desc, crumbs_items, body, jsonld=None, review_block=True, cta=None):
+def seite(url, title, desc, crumbs_items, body, jsonld=None, review_block=True, cta=None, preload_img=None, refs=True):
     crumbs, crumb_ld = S.breadcrumb(crumbs_items)
-    tail = B.bewertungen() if review_block else ""
+    tail = (S.referenzen(url) if refs else "") + (B.bewertungen() if review_block else "")
     if cta:
         tail += S.cta_band(*cta)
-    return B.page(B.head(title, desc[:158], url, jsonld=[crumb_ld] + (jsonld or [])), f"{crumbs}\n{body}\n{tail}")
+    return B.page(B.head(title, desc[:158], url, jsonld=[crumb_ld] + (jsonld or []), preload_img=preload_img), f"{crumbs}\n{body}\n{tail}")
 
 
 def formular(fid, titel, untertitel, quelle, source):
@@ -93,7 +94,8 @@ def ueber_uns():
     form = formular("form-ueber", "Lernen Sie uns kennen", "Kostenlose Besichtigung – wir melden uns persönlich.", "Über uns", "ueber-uns")
     body = f"""{S.sub_hero("Über uns · Ruckzuckräumung aus Herten", "Ein junges Team aus Herten – motiviert und für jeden Auftrag bereit",
                     f"Hinter Ruckzuckräumung steht Inhaber {FIRMA['inhaber']} mit einem jungen, motivierten Team. Unser Versprechen steht schon im Logo: schnell, sauber, zuverlässig.",
-                    ["Fester Ansprechpartner: der Inhaber", "Aus der Region. Für die Region.", "Kostenlose Besichtigung"], form)}
+                    ["Fester Ansprechpartner: der Inhaber", "Aus der Region. Für die Region.", "Kostenlose Besichtigung"], form,
+                    bg="/bilder/hero/seite-ueber-uns.webp")}
 {S.trustbar()}
 <section class="sec sec-light" aria-labelledby="story-h">
   <div class="wrap split split-img">
@@ -130,12 +132,14 @@ def ueber_uns():
       <article class="adv"><span class="adv-ic">{ic('check')}</span><h3>Zuverlässig</h3><p>Kostenlose Besichtigung, transparentes Angebot, fester Termin – und ein Ansprechpartner, der erreichbar ist.</p></article>
       <article class="adv adv-hi"><span class="adv-ic">{ic('tag')}</span><h3>10 % Neukunden-Rabatt</h3><p>Auf Ihren ersten Auftrag – einfach bei der Anfrage angeben.</p><a class="more" href="/rabatt/">Rabatt sichern {ic('arrow')}</a></article>
     </div></div>
-</section>"""
+</section>
+{S.garantien("Unsere Garantien für Sie", "raeumung")}"""
     return seite("/ueber-uns/", "Über uns | Ruckzuckräumung – junges Team aus Herten",
                  f"Ruckzuckräumung aus Herten: Inhaber {FIRMA['inhaber']} und ein junges, motiviertes Team für Umzüge, Entrümpelungen und Montagen. Schnell. Sauber. Zuverlässig.",
                  [("Startseite", "/"), ("Über uns", "/ueber-uns/")], body,
                  jsonld=[{"@context": "https://schema.org", "@type": "AboutPage", "url": SITE_URL + "/ueber-uns/", "about": {"@id": SITE_URL + "/#firma"}}],
-                 cta=("Lernen Sie uns kennen – bei einer kostenlosen Besichtigung", "Antwort vom Inhaber persönlich · Mo–Sa 8–18 Uhr"))
+                 cta=("Lernen Sie uns kennen – bei einer kostenlosen Besichtigung", "Antwort vom Inhaber persönlich · Mo–Sa 8–18 Uhr"),
+                 preload_img="/bilder/hero/seite-ueber-uns.webp")
 
 
 # --------------------------------------------------------------------------- Galerie
@@ -150,7 +154,7 @@ def galerie():
         kats.append(f'<h2 class="gal-h">{escape(kat)}</h2><div class="gallery gallery-cap">{figs}</div>')
     body = f"""{S.sub_hero("Galerie · Referenzen", "Galerie: echte Fotos aus unseren Aufträgen",
                     "Keine Stockfotos, keine Symbolbilder: Hier sehen Sie, wie es bei unseren Umzügen, Entrümpelungen und Montagen tatsächlich aussieht.",
-                    ["Echte Aufträge", "Vorher & nachher", "Umzug · Entrümpelung · Montage"], form)}
+                    ["Echte Aufträge", "Vorher & nachher", "Umzug · Entrümpelung · Montage"], form, bg="/bilder/hero/seite-galerie.webp")}
 {S.trustbar()}
 <section class="sec sec-light" aria-label="Fotos">
   <div class="wrap">{''.join(kats)}<p class="ref-note dark">Klicken Sie auf ein Foto für die große Ansicht.</p></div>
@@ -159,7 +163,7 @@ def galerie():
                  "Echte Fotos aus unseren Aufträgen: Umzüge, Entrümpelungen, Haushaltsauflösungen und Möbelmontagen in Herten und Umgebung.",
                  [("Startseite", "/"), ("Galerie", "/galerie/")], body,
                  jsonld=[{"@context": "https://schema.org", "@type": "ImageGallery", "url": SITE_URL + "/galerie/", "name": "Galerie Ruckzuckräumung"}],
-                 cta=("Ihr Auftrag als Nächstes?", "Besichtigung kostenlos · 10 % Neukunden-Rabatt"))
+                 cta=("Ihr Auftrag als Nächstes?", "Besichtigung kostenlos · 10 % Neukunden-Rabatt"), preload_img="/bilder/hero/seite-galerie.webp", refs=False)
 
 
 # --------------------------------------------------------------------------- Kontakt
@@ -171,7 +175,7 @@ def kontakt():
             'loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>')
     body = f"""{S.sub_hero("Kontakt", "Kontakt: So erreichen Sie Ruckzuckräumung",
                     "Rufen Sie an, schreiben Sie per WhatsApp oder nutzen Sie das Formular – wir melden uns persönlich und vereinbaren eine kostenlose Besichtigung.",
-                    [f"Telefon & WhatsApp: {B.TEL_TXT}", FIRMA['oeffnungszeiten'], "Besichtigung kostenlos"], form)}
+                    [f"Telefon & WhatsApp: {B.TEL_TXT}", FIRMA['oeffnungszeiten'], "Besichtigung kostenlos"], form, bg="/bilder/hero/seite-kontakt.webp")}
 <section class="sec sec-light" aria-labelledby="nap-h">
   <div class="wrap split">
     <div>
@@ -194,31 +198,13 @@ def kontakt():
       {B.consent_embed('functional', maps, 'Google Maps laden', 'Beim Laden der Karte werden Daten an Google übertragen.', min_h=360, cls='maps-embed maps-embed-lg')}
     </div>
   </div>
-</section>"""
+</section>
+{S.garantien("Unsere Garantien für Sie", "raeumung")}"""
     return seite("/kontakt/", "Kontakt | Ruckzuckräumung Herten – ☎ 0177 6126333",
                  f"Kontakt zu Ruckzuckräumung: {FIRMA['strasse']}, {FIRMA['plz']} {FIRMA['ort']}. Telefon & WhatsApp {B.TEL_TXT}, {FIRMA['oeffnungszeiten']}. Kostenlose Besichtigung.",
                  [("Startseite", "/"), ("Kontakt", "/kontakt/")], body,
-                 jsonld=[{"@context": "https://schema.org", "@type": "ContactPage", "url": SITE_URL + "/kontakt/", "about": {"@id": SITE_URL + "/#firma"}}])
-
-
-# --------------------------------------------------------------------------- Bewertungen
-
-def bewertungen_seite():
-    form = formular("form-bewertungen", "Überzeugen Sie sich selbst", "Kostenlose Besichtigung – Antwort vom Inhaber.", "Bewertungen", "bewertungen")
-    body = f"""{S.sub_hero("Bewertungen", "Bewertungen unserer Kunden",
-                    "Wir sind neu online und sammeln gerade unsere ersten Bewertungen. Ehrlich und ungeschönt – so, wie unsere Kunden es erlebt haben.",
-                    ["Echte Kundenstimmen", "Keine gekauften Bewertungen", "Ihre Meinung zählt"], form)}
-<section class="sec sec-light" aria-labelledby="schon-h">
-  <div class="wrap narrow center">
-    <p class="eyebrow">Schon mit uns gearbeitet?</p>
-    <h2 id="schon-h">Schon mit uns gearbeitet? Bewerten Sie uns!</h2>
-    <p class="sec-sub">Ihre Bewertung hilft anderen Kundinnen und Kunden aus der Region – und uns, noch besser zu werden. Es dauert nur eine Minute.</p>
-    <a class="btn btn-primary btn-lg" href="/bewerten/">{ic('star')} Jetzt bewerten</a>
-  </div>
-</section>"""
-    return seite("/bewertungen/", "Bewertungen | Ruckzuckräumung Herten",
-                 "Bewertungen und Erfahrungen mit Ruckzuckräumung aus Herten – Umzüge, Entrümpelungen und Montagen. Schon mit uns gearbeitet? Bewerten Sie uns.",
-                 [("Startseite", "/"), ("Bewertungen", "/bewertungen/")], body)
+                 jsonld=[{"@context": "https://schema.org", "@type": "ContactPage", "url": SITE_URL + "/kontakt/", "about": {"@id": SITE_URL + "/#firma"}}],
+                 preload_img="/bilder/hero/seite-kontakt.webp")
 
 
 # --------------------------------------------------------------------------- Rechtstexte (wortgetreu)
@@ -269,9 +255,10 @@ DATENSCHUTZ = """<p>Stand: 11.09.2026</p>
 
 def rechtsseite(url, name, h1, inhalt, desc):
     form = formular(f"form-{url.strip('/')}", "Kostenloses Angebot", "Kostenlos &amp; unverbindlich.", name, url.strip("/"))
-    body = f"""{hero_slim("Rechtliches", h1, "")}
-{mit_formular_rechts(inhalt, form)}"""
-    return seite(url, f"{name} | Ruckzuckräumung", desc, [("Startseite", "/"), (name, url)], body)
+    body = f"""{S.sub_hero("Rechtliches", h1, "Ruckzuckräumung & Umzüge-Entrümpelung · Inhaber Lucien Fynn Khaouli · Josefstr. 69 · 45699 Herten",
+                    ["Umzug, Entrümpelung & Montage", "Herten & Umgebung", "Kostenlose Besichtigung"], form, bg="/bilder/hero/seite-recht.webp")}
+<section class="sec sec-light"><div class="wrap narrow"><div class="prose rechtstext">{inhalt}</div></div></section>"""
+    return seite(url, f"{name} | Ruckzuckräumung", desc, [("Startseite", "/"), (name, url)], body, preload_img="/bilder/hero/seite-recht.webp")
 
 
 # --------------------------------------------------------------------------- Funnel
@@ -292,25 +279,15 @@ def bewerten():
     fallback = native_form("form-bewerten", "Neue Kundenbewertung über die Webseite", "Ihre Bewertung",
                            "Dauert nur eine Minute – vielen Dank!", felder, "Bewertung absenden", "bewerten")
     widget = ghl_oder_fallback(GHL_SURVEY_EMBED, "Bewertungs-Formular laden", fallback)
-    body = f"""{hero_slim("Bewertungen › Bewerten Sie uns", "Bewerten Sie uns",
-                    "Sie haben mit uns gearbeitet? Dann freuen wir uns über Ihre ehrliche Meinung – sie hilft anderen bei der Entscheidung und uns, besser zu werden.")}
-<section class="sec sec-light" aria-label="Bewertung abgeben">
-  <div class="wrap split split-form">
-    <div class="prose">
-      <h2>So einfach geht's</h2>
-      <ul class="check-grid one">
-        <li>{ic('check')}<span>Sterne vergeben</span></li><li>{ic('check')}<span>Ein paar Sätze schreiben</span></li><li>{ic('check')}<span>Absenden – fertig</span></li>
-      </ul>
-      <p>Jede Bewertung lesen wir persönlich. Kritik nehmen wir ernst: Wenn etwas nicht gepasst hat, melden wir uns bei Ihnen.</p>
-    </div>
-    <aside class="aside-form" id="anfrage">{widget}</aside>
-  </div>
-</section>"""
+    body = f"""{S.sub_hero("Bewerten Sie uns", "Bewerten Sie uns – Ihre Meinung zählt",
+                    "Sie haben mit uns gearbeitet? Dann freuen wir uns über Ihre ehrliche Meinung. Jede Bewertung lesen wir persönlich – auch Kritik nehmen wir ernst.",
+                    ["Sterne vergeben", "Ein paar Sätze schreiben", "Absenden – fertig"], widget, bg="/bilder/hero/seite-bewerten.webp",
+                    urgency=["Dauert nur eine Minute", "Hilft anderen Kunden aus der Region"])}"""
     return seite("/bewerten/", "Bewerten Sie uns | Ruckzuckräumung Herten",
                  "Sie haben mit Ruckzuckräumung gearbeitet? Bewerten Sie unseren Umzug, unsere Entrümpelung oder Montage – es dauert nur eine Minute.",
-                 [("Startseite", "/"), ("Bewertungen", "/bewertungen/"), ("Bewerten Sie uns", "/bewerten/")], body,
+                 [("Startseite", "/"), ("Bewerten Sie uns", "/bewerten/")], body,
                  review_block=False,  # kein Selbst-Link: Bewertungsabschnitt durch Abschluss-CTA ersetzt
-                 cta=("Lieber direkt sprechen?", f"Rufen Sie uns an: {B.TEL_TXT} · Mo–Sa 8–18 Uhr"))
+                 cta=("Lieber direkt sprechen?", f"Rufen Sie uns an: {B.TEL_TXT} · Mo–Sa 8–18 Uhr"), preload_img="/bilder/hero/seite-bewerten.webp")
 
 
 def rabatt():
@@ -326,29 +303,19 @@ def rabatt():
     fallback = native_form("form-rabatt", "Rabatt-Anfrage (10 % Neukunden-Rabatt)", "10 % Rabatt sichern",
                            "Für Ihren ersten Auftrag – wir melden uns persönlich.", felder, "Rabatt sichern", "rabatt")
     widget = ghl_oder_fallback(GHL_RABATT_FORMULAR_EMBED, "Rabatt-Formular laden", fallback)
-    body = f"""{hero_slim("Neukunden-Rabatt", "10 % Rabatt auf Ihren ersten Auftrag",
-                    "Neu bei Ruckzuckräumung? Dann sparen Sie 10 % – egal ob Umzug, Entrümpelung, Haushaltsauflösung oder Montage.")}
-<section class="sec sec-light" aria-label="Rabatt anfordern">
-  <div class="wrap split split-form">
-    <div class="prose">
-      <h2>So sichern Sie sich den Rabatt</h2>
-      <ul class="check-grid one">
-        <li>{ic('check')}<span>Formular ausfüllen</span></li><li>{ic('check')}<span>Kostenlose Besichtigung vereinbaren</span></li>
-        <li>{ic('check')}<span>10 % werden im Angebot abgezogen</span></li>
-      </ul>
-      <p>Der Rabatt gilt für Neukunden auf den ersten Auftrag.</p>
-      <!-- TODO: Rabattbedingungen vom Kunden bestätigen lassen (Mindestauftragswert? Kombinierbarkeit?) -->
-    </div>
-    <aside class="aside-form" id="anfrage">{widget}</aside>
-  </div>
-</section>"""
+    body = f"""{S.sub_hero("Neukunden-Rabatt", "10 % Rabatt auf Ihren ersten Auftrag",
+                    "Neu bei Ruckzuckräumung? Dann sparen Sie 10 % – egal ob Umzug, Entrümpelung, Haushaltsauflösung oder Montage. Formular ausfüllen, kostenlose Besichtigung vereinbaren, 10 % werden im Angebot abgezogen.",
+                    ["Gilt für alle Leistungen", "Für Neukunden auf den ersten Auftrag", "Kostenlose Besichtigung inklusive"], widget,
+                    bg="/bilder/hero/seite-rabatt.webp", urgency=["Kurzfristige Termine möglich – auch samstags", "Rabatt einfach im Formular sichern"])}
+<!-- TODO: Rabattbedingungen vom Kunden bestätigen lassen (Mindestauftragswert? Kombinierbarkeit?) -->
+{S.garantien("Unsere Garantien – auch mit Rabatt", "raeumung")}"""
     return seite("/rabatt/", "10 % Neukunden-Rabatt | Ruckzuckräumung Herten",
                  "10 % Rabatt für Neukunden auf den ersten Auftrag: Umzug, Entrümpelung, Haushaltsauflösung oder Montage – jetzt anfordern.",
-                 [("Startseite", "/"), ("Rabatt", "/rabatt/")], body)
+                 [("Startseite", "/"), ("Rabatt", "/rabatt/")], body, preload_img="/bilder/hero/seite-rabatt.webp")
 
 
 def danke():
-    body = f"""<section class="hero hero-sub hero-slim danke" aria-labelledby="hero-h">
+    body = f"""<section class="hero hero-sub hero-slim danke has-bg" style="--hero-bg:url('/bilder/hero/seite-danke.webp')" aria-labelledby="hero-h">
   <div class="wrap center">
     <span class="danke-ic">{ic('check')}</span>
     <p class="eyebrow eyebrow-light">Anfrage erhalten</p>
@@ -361,7 +328,7 @@ def danke():
   </div>
 </section>"""
     return seite("/danke/", "Vielen Dank | Ruckzuckräumung", "Vielen Dank für Ihre Anfrage bei Ruckzuckräumung. Wir melden uns persönlich bei Ihnen.",
-                 [("Startseite", "/"), ("Vielen Dank", "/danke/")], body)
+                 [("Startseite", "/"), ("Vielen Dank", "/danke/")], body, preload_img="/bilder/hero/seite-danke.webp")
 
 
 def kunden_bewertung():
@@ -375,7 +342,7 @@ def kunden_bewertung():
 
 def alle(write):
     seiten = {
-        "/ueber-uns/": ueber_uns(), "/galerie/": galerie(), "/kontakt/": kontakt(), "/bewertungen/": bewertungen_seite(),
+        "/ueber-uns/": ueber_uns(), "/galerie/": galerie(), "/kontakt/": kontakt(),
         "/impressum/": rechtsseite("/impressum/", "Impressum", "Impressum", IMPRESSUM, "Impressum von Ruckzuckräumung & Umzüge-Entrümpelung, Inhaber Lucien Fynn Khaouli, Josefstr. 69, 45699 Herten."),
         "/datenschutz/": rechtsseite("/datenschutz/", "Datenschutz", "Datenschutzerklärung", DATENSCHUTZ, "Datenschutzerklärung von Ruckzuckräumung & Umzüge-Entrümpelung, Herten."),
         "/bewerten/": bewerten(), "/rabatt/": rabatt(), "/danke/": danke(),

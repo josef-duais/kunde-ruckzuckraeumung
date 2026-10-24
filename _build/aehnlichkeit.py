@@ -11,7 +11,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from texte import L, kombi  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-STAEDTE = json.loads((ROOT / "_build" / "staedte.json").read_text())
+from daten import SEITEN_STAEDTE  # noqa: E402
+_ALLE = {s["slug"]: s for s in json.loads((ROOT / "_build" / "staedte.json").read_text())}
+STAEDTE = [_ALLE[x] for x in SEITEN_STAEDTE]
 
 
 def shingles(text, n=5):
@@ -38,6 +40,10 @@ def html_text(path_or_html):
     h = re.sub(r'<(nav) class="crumbs"[\s\S]*?</nav>', " ", h)
     h = re.sub(r'<section class="(trustbar|cta-band)"[\s\S]*?</section>', " ", h)
     h = re.sub(r'<div class="hero-btns">[\s\S]*?</div>', " ", h)
+    h = re.sub(r'<section class="sec sec-(light|soft) (garantien|referenzen)"[\s\S]*?</section>', " ", h)
+    h = re.sub(r'<details class="credits[\s\S]*?</details>', " ", h)
+    h = re.sub(r'<div class="owner-card">[\s\S]*?</div>', " ", h)
+    h = re.sub(r'<ul class="hero-urgency">[\s\S]*?</ul>', " ", h)
     return re.sub(r"<[^>]+>", " ", h)
 
 

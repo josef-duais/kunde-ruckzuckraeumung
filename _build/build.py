@@ -77,11 +77,13 @@ def write_icons():
 
 # --------------------------------------------------------------------------- <head>
 
-def head(title, description, path, preload_hero=False, jsonld=None):
+def head(title, description, path, preload_hero=False, jsonld=None, preload_img=None):
     canonical = SITE_URL + path
     pre = ""
     if preload_hero:
-        pre = ('<link rel="preload" as="image" type="image/webp" href="/bilder/stock/hero-umzugskartons.webp" '
+        preload_img = "/bilder/stock/hero-umzugskartons.webp"
+    if preload_img:  # Hero-Hintergrund (nur Desktop – mobil dunkler Verlauf, siehe styles.css)
+        pre = (f'<link rel="preload" as="image" type="image/webp" href="{preload_img}" '
                'media="(min-width: 900px)" fetchpriority="high">')
     if isinstance(jsonld, dict):
         jsonld = [jsonld]
@@ -125,7 +127,7 @@ def header():
         for g, items in gruppen.items()
     )
     top = [s for s in STAEDTE if s[3]]
-    orte = "".join(f'<li><a href="{stadt_url(s[0])}">{escape(s[0])}</a></li>' for s in top)
+    orte = "".join(f'<li><a href="/umzug-{STADT_SLUG[s[0]]}/">{escape(s[0])}</a></li>' for s in top)
     return f"""<a class="skip" href="#inhalt">Zum Inhalt springen</a>
 <div class="topbar">
   <div class="wrap topbar-in">
@@ -155,7 +157,6 @@ def header():
           <div class="sub sub-orte"><ul>{orte}</ul><a class="sub-all" href="/#einsatzgebiete">Weitere Orte {icon('arrow')}</a></div>
         </li>
         <li><a href="/galerie/" class="nav-link">Galerie</a></li>
-        <li><a href="/bewertungen/" class="nav-link">Bewertungen</a></li>
         <li><a href="/ueber-uns/" class="nav-link">Über uns</a></li>
         <li><a href="/kontakt/" class="nav-link">Kontakt</a></li>
       </ul>
@@ -220,22 +221,16 @@ def consent_embed(kategorie, inhalt_html, titel, hinweis, min_h=420, cls=""):
 # --------------------------------------------------------------------------- Baustein 4: Bewertungen
 
 def bewertungen():
-    if GHL_BEWERTUNGEN_EMBED:
-        widget = consent_embed("functional", GHL_BEWERTUNGEN_EMBED, "Bewertungen anzeigen",
-                               "Hier werden Bewertungen über unseren Partner HighLevel geladen. Dabei werden Daten an den Anbieter übertragen.",
-                               min_h=360)
-    else:
-        widget = """<!-- TODO: {{GHL_BEWERTUNGEN_EMBED}} in _build/daten.py eintragen – wird dann automatisch consent-gated geladen -->
-<div class="reviews-empty">
-  <div class="stars stars-empty" aria-hidden="true">""" + icon("star") * 5 + """</div>
-  <p class="reviews-empty-title">Noch keine Online-Bewertungen – geben Sie die erste ab!</p>
-  <p>Wir sind neu online. Ihre ehrliche Meinung nach dem Auftrag hilft anderen Kundinnen und Kunden aus der Region bei der Entscheidung.</p>
-</div>"""
+    """Bewertungs-Abschnitt NUR mit echtem GHL-Widget (consent-gated). Ohne Widget: nichts anzeigen – keine Platzhalter."""
+    if not GHL_BEWERTUNGEN_EMBED:
+        return ""
+    widget = consent_embed("functional", GHL_BEWERTUNGEN_EMBED, "Bewertungen anzeigen",
+                           "Hier werden Bewertungen über unseren Partner HighLevel geladen. Dabei werden Daten an den Anbieter übertragen.",
+                           min_h=360)
     return f"""<section class="sec sec-soft" id="bewertungen" aria-labelledby="bew-h">
   <div class="wrap center">
     <p class="eyebrow">Bewertungen</p>
     <h2 id="bew-h">Bewertungen aus der Region</h2>
-    <p class="sec-sub">Zufriedene Kunden sind unsere beste Werbung. Waren Sie mit unserer Arbeit zufrieden? Dann freuen wir uns über Ihre Bewertung.</p>
     <div class="reviews-widget">{widget}</div>
     <a class="btn btn-dark" href="/bewerten/">{icon('star')} Bewerten Sie uns</a>
   </div>
@@ -246,7 +241,7 @@ def bewertungen():
 
 def footer():
     l_links = "".join(f'<li><a href="/{l["slug"]}/">{escape(l["name"])}</a></li>' for l in LEISTUNGEN)
-    o_links = "".join(f'<li><a href="{stadt_url(s[0])}">{escape(s[0])}</a></li>' for s in STAEDTE if s[3])
+    o_links = "".join(f'<li><a href="/umzug-{STADT_SLUG[s[0]]}/">{escape(s[0])}</a></li>' for s in STAEDTE if s[3])
     social = "".join(
         f'<a href="{url}" target="_blank" rel="noopener" aria-label="{n}">{icon(n.lower())}</a>'
         for n, url in FIRMA["social"].items()
@@ -286,6 +281,7 @@ def footer():
     <p>© <span data-year>2026</span> {escape(FIRMA['name'])}</p>
     <nav aria-label="Rechtliches" class="legal">
       <a href="/kontakt/">Kontakt</a>
+      <a href="/bewerten/">Bewertung abgeben</a>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
       <button type="button" class="link-btn" data-cookie-settings>Cookie-Einstellungen</button>
@@ -428,7 +424,8 @@ def homepage():
         f'<figure><img src="/bilder/kunde/{f}.webp" alt="{escape(a)}" width="600" height="600" loading="lazy" decoding="async"></figure>'
         for f, a in galerie)
 
-    chips = "".join(f'<li><a href="{stadt_url(s[0])}">{escape(s[0])}</a></li>' for s in STAEDTE[:42])
+    import seiten as S
+    karten = "".join(S.stadt_karte(x, x["name"], f"/umzug-{x['slug']}/", f'<p>{escape(S.entfernung_txt(x))}</p>') for x in S.STAEDTE)
 
     schritte = [
         ("Anfrage stellen", "Formular ausfüllen, anrufen oder per WhatsApp schreiben – in unter einer Minute erledigt."),
@@ -558,9 +555,9 @@ def homepage():
         {consent_embed('functional', maps_iframe, 'Google Maps laden', 'Beim Laden der Karte werden Daten an Google übertragen.', min_h=0, cls='maps-embed')}
       </div>
       <div>
-        <p class="area-title dark">Die nächstgelegenen von {len(STAEDTE)} Städten in unserem Einsatzgebiet</p>
-        <ul class="chips">{chips}</ul>
-        <a class="more" href="/einsatzgebiete/">Ihr Ort ist nicht dabei? Alle {len(STAEDTE)} Einsatzgebiete ansehen {icon('arrow')}</a>
+        <p class="area-title dark">Unsere wichtigsten Einsatzorte</p>
+        <div class="city-grid city-grid-mini">{karten}</div>
+        <a class="more" href="/einsatzgebiete/">Ihr Ort ist nicht dabei? Alle Einsatzgebiete ansehen {icon('arrow')}</a>
       </div>
     </div>
   </div>
@@ -599,6 +596,7 @@ def homepage():
     </div>
   </div>
 </section>
+{S.bildnachweise([x['slug'] for x in S.STAEDTE])}
 """
 
 

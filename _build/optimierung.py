@@ -15,7 +15,7 @@ from texte import L  # noqa: E402
 import seiten  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent
-STAEDTE = json.loads((ROOT / "staedte.json").read_text())
+STAEDTE = seiten.STAEDTE
 SALTS = ROOT / "salts.json"
 ZIEL = 0.22  # Sicherheitsabstand zur Vorgabe 25 %
 
@@ -66,36 +66,7 @@ def main():
             salts[f"{k[0]}|{k[1]}"], sets[k] = best[1], best[2]
             erledigt.add(k)
             erledigt.update(verstoesse(k))
-    # Stadt-Archive untereinander
-    akeys = [s["slug"] for s in STAEDTE]
-    def agen(slug):
-        return shingles(html_text(seiten.stadt_seite(by_slug[slug], salts.get(f"stadt|{slug}", 0))))
-    asets = {x: agen(x) for x in akeys}
-    def acont(a, b):
-        return len(asets[a] & asets[b]) / max(1, min(len(asets[a]), len(asets[b])))
-    for _runde in range(20):
-        schlecht = [a for a in akeys if any(acont(a, b) >= ZIEL for b in akeys if b != a)]
-        if not schlecht:
-            break
-        print(f"Archive: {len(schlecht)} Seiten ≥ {ZIEL:.0%}")
-        for a in schlecht:
-            def worst(x):
-                return max(acont(x, b) for b in akeys if b != x)
-            if worst(a) < ZIEL:
-                continue
-            best = (worst(a), salts.get(f"stadt|{a}", 0), asets[a])
-            for versuch in range(1, 30):
-                salts[f"stadt|{a}"] = best[1] + versuch * 104729
-                asets[a] = agen(a)
-                w = worst(a)
-                if w < best[0]:
-                    best = (w, salts[f"stadt|{a}"], asets[a])
-                if w < ZIEL:
-                    break
-            salts[f"stadt|{a}"], asets[a] = best[1], best[2]
     SALTS.write_text(json.dumps(salts, indent=0, sort_keys=True))
-    am = max(acont(a, b) for a in akeys for b in akeys if a < b)
-    print(f"Archive: Maximum {am:.1%}")
     # Bericht
     mx, n, summe = 0.0, 0, 0.0
     for k in keys:

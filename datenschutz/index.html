@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-
+<link rel="preload" as="image" type="image/webp" href="/bilder/hero/seite-recht.webp" media="(min-width: 900px)" fetchpriority="high">
 <link rel="stylesheet" href="/styles.css?v=3">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.ruckzuck-entruempelung-herten.de/"}, {"@type": "ListItem", "position": 2, "name": "Datenschutz", "item": "https://www.ruckzuck-entruempelung-herten.de/datenschutz/"}]}</script>
 </head>
@@ -50,10 +50,9 @@
         <li class="has-sub">
           <a href="/#einsatzgebiete" class="nav-link">Einsatzgebiete</a>
           <button class="sub-toggle" aria-expanded="false" aria-label="Einsatzgebiete-Menü öffnen"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-chevron"/></svg></button>
-          <div class="sub sub-orte"><ul><li><a href="/einsatzgebiete/herten/">Herten</a></li><li><a href="/einsatzgebiete/recklinghausen/">Recklinghausen</a></li><li><a href="/einsatzgebiete/marl/">Marl</a></li><li><a href="/einsatzgebiete/gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/einsatzgebiete/gladbeck/">Gladbeck</a></li><li><a href="/einsatzgebiete/bochum/">Bochum</a></li><li><a href="/einsatzgebiete/essen/">Essen</a></li><li><a href="/einsatzgebiete/dortmund/">Dortmund</a></li></ul><a class="sub-all" href="/#einsatzgebiete">Weitere Orte <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a></div>
+          <div class="sub sub-orte"><ul><li><a href="/umzug-herten/">Herten</a></li><li><a href="/umzug-recklinghausen/">Recklinghausen</a></li><li><a href="/umzug-marl/">Marl</a></li><li><a href="/umzug-gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/umzug-gladbeck/">Gladbeck</a></li><li><a href="/umzug-bochum/">Bochum</a></li><li><a href="/umzug-essen/">Essen</a></li><li><a href="/umzug-dortmund/">Dortmund</a></li></ul><a class="sub-all" href="/#einsatzgebiete">Weitere Orte <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a></div>
         </li>
         <li><a href="/galerie/" class="nav-link">Galerie</a></li>
-        <li><a href="/bewertungen/" class="nav-link">Bewertungen</a></li>
         <li><a href="/ueber-uns/" class="nav-link">Über uns</a></li>
         <li><a href="/kontakt/" class="nav-link">Kontakt</a></li>
       </ul>
@@ -69,13 +68,53 @@
 </header>
 <main id="inhalt">
 <nav class="crumbs" aria-label="Brotkrumen"><ol class="wrap"><li><a href="/">Startseite</a></li><li aria-current="page">Datenschutz</li></ol></nav>
-<section class="hero hero-sub hero-slim" aria-labelledby="hero-h">
-  <div class="wrap"><p class="eyebrow eyebrow-light">Rechtliches</p><h1 id="hero-h">Datenschutzerklärung</h1>
+<section class="hero hero-sub has-bg" style="--hero-bg:url('/bilder/hero/seite-recht.webp')" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      
+      <p class="eyebrow eyebrow-light">Rechtliches</p>
+      <h1 id="hero-h">Datenschutzerklärung</h1>
+      <p class="hero-lead">Ruckzuckräumung &amp; Umzüge-Entrümpelung · Inhaber Lucien Fynn Khaouli · Josefstr. 69 · 45699 Herten</p>
+      <ul class="hero-checks"><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg><span>Umzug, Entrümpelung &amp; Montage</span></li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg><span>Herten &amp; Umgebung</span></li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg><span>Kostenlose Besichtigung</span></li></ul>
+      <div class="owner-card">
+        <span class="owner-av" aria-hidden="true">LK</span>
+        <p><strong>Lucien Fynn Khaouli</strong> · Inhaber<br><span>Ihr fester Ansprechpartner – direkt erreichbar per Telefon &amp; WhatsApp.</span></p>
+        <a class="owner-call" href="tel:+491776126333" aria-label="Inhaber direkt anrufen"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-phone"/></svg></a>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-primary btn-lg" href="#anfrage">Kostenloses Angebot anfordern</a>
+        <a class="btn btn-ghost btn-lg" href="tel:+491776126333"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-phone"/></svg> 0177 6126333</a>
+      </div>
+      <ul class="hero-urgency"><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-clock"/></svg>Kurzfristige Termine möglich – auch samstags</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-tag"/></svg>10 % Neukunden-Rabatt auf den ersten Auftrag</li></ul>
     </div>
+    <div class="hero-form" id="anfrage"><form class="lead-form" id="form-datenschutz" action="https://formsubmit.co/ruckzuckraeumung@web.de" method="POST">
+  <p class="lead-title">Kostenloses Angebot</p>
+  <p class="lead-sub">Kostenlos &amp; unverbindlich.</p>
+  <input type="hidden" name="_subject" value="Neue Anfrage über die Webseite">
+  <input type="hidden" name="_next" value="https://www.ruckzuck-entruempelung-herten.de/danke/?source=datenschutz">
+  <input type="hidden" name="Quelle" value="datenschutz">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="Formular" value="Datenschutz">
+  <div class="hp" aria-hidden="true"><label>Bitte leer lassen <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+  <div class="f-row">
+    <div class="f-field"><label for="form-datenschutz-name">Name*</label><input id="form-datenschutz-name" name="Name" type="text" autocomplete="name" placeholder="Ihr Name" required></div>
+    <div class="f-field"><label for="form-datenschutz-tel">Telefon*</label><input id="form-datenschutz-tel" name="Telefon" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ihre Telefonnummer" required></div>
+  </div>
+  <div class="f-field"><label for="form-datenschutz-mail">E-Mail</label><input id="form-datenschutz-mail" name="email" type="email" autocomplete="email" placeholder="Ihre E-Mail-Adresse (optional)"></div>
+  <div class="f-field"><label for="form-datenschutz-leistung">Welche Leistung benötigen Sie?</label>
+    <select id="form-datenschutz-leistung" name="Leistung"><option value="">Bitte wählen …</option><option>Umzug</option><option>Firmenumzug</option><option>Seniorenumzug</option><option>Entrümpelung</option><option>Haushaltsauflösung</option><option>Wohnungsauflösung</option><option>Kellerentrümpelung</option><option>Messie-Wohnung entrümpeln</option><option>Möbelmontage</option><option>Küchenmontage</option><option>Sonstiges / mehrere Leistungen</option></select></div>
+  <div class="f-field"><label for="form-datenschutz-msg">Kurze Beschreibung (optional)</label>
+    <textarea id="form-datenschutz-msg" name="Nachricht" rows="3" placeholder="z. B. 3-Zimmer-Wohnung, 2. OG ohne Aufzug, Umzug von Herten nach Marl"></textarea></div>
+  <label class="f-check"><input type="checkbox" name="Datenschutz" value="akzeptiert" required>
+    <span>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung der Anfrage zu.*</span></label>
+  <button class="btn btn-primary btn-block btn-lg" type="submit">Kostenloses Angebot anfordern <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></button>
+  <p class="lead-note"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg> 100 % kostenlos &amp; unverbindlich <span class="sep">·</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-tag"/></svg> 10 % Neukunden-Rabatt</p>
+</form></div>
+  </div>
+  
 </section>
-<section class="sec sec-light">
-  <div class="wrap split split-form">
-    <div class="prose rechtstext"><p>Stand: 11.09.2026</p>
+<section class="sec sec-light"><div class="wrap narrow"><div class="prose rechtstext"><p>Stand: 11.09.2026</p>
 <h2>1. Verantwortlicher</h2>
 <p>Ruckzuckräumung &amp; Umzüge-Entrümpelung<br>Inhaber: Lucien Fynn Khaouli<br>Josefstr. 69<br>45699 Herten<br>Deutschland<br>Telefon: <a href="tel:+491776126333">0177 6126333</a><br>E-Mail: <a href="mailto:ruckzuckraeumung@web.de">ruckzuckraeumung@web.de</a></p>
 <h2>2. Hosting und Server-Logfiles</h2>
@@ -104,45 +143,13 @@
 <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
 <h2>9. Cookies, Tracking und externe Inhalte</h2>
 <p>Diese Website verwendet nach dem derzeitigen Stand keine eigenen Analyse- oder Trackingdienste und keine eingebetteten Google-Schriftarten, Videos oder Karten. Beim Anklicken von Telefon-, E-Mail- oder WhatsApp-Links verlassen Sie die Website bzw. öffnen eine externe Anwendung; dort gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
-<p><a href="/impressum/">Impressum</a></p></div>
-    <aside class="aside-form" id="anfrage"><form class="lead-form" id="form-datenschutz" action="https://formsubmit.co/ruckzuckraeumung@web.de" method="POST">
-  <p class="lead-title">Kostenloses Angebot</p>
-  <p class="lead-sub">Kostenlos &amp; unverbindlich.</p>
-  <input type="hidden" name="_subject" value="Neue Anfrage über die Webseite">
-  <input type="hidden" name="_next" value="https://www.ruckzuck-entruempelung-herten.de/danke/?source=datenschutz">
-  <input type="hidden" name="Quelle" value="datenschutz">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="Formular" value="Datenschutz">
-  <div class="hp" aria-hidden="true"><label>Bitte leer lassen <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
-  <div class="f-row">
-    <div class="f-field"><label for="form-datenschutz-name">Name*</label><input id="form-datenschutz-name" name="Name" type="text" autocomplete="name" placeholder="Ihr Name" required></div>
-    <div class="f-field"><label for="form-datenschutz-tel">Telefon*</label><input id="form-datenschutz-tel" name="Telefon" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ihre Telefonnummer" required></div>
-  </div>
-  <div class="f-field"><label for="form-datenschutz-mail">E-Mail</label><input id="form-datenschutz-mail" name="email" type="email" autocomplete="email" placeholder="Ihre E-Mail-Adresse (optional)"></div>
-  <div class="f-field"><label for="form-datenschutz-leistung">Welche Leistung benötigen Sie?</label>
-    <select id="form-datenschutz-leistung" name="Leistung"><option value="">Bitte wählen …</option><option>Umzug</option><option>Firmenumzug</option><option>Seniorenumzug</option><option>Entrümpelung</option><option>Haushaltsauflösung</option><option>Wohnungsauflösung</option><option>Kellerentrümpelung</option><option>Messie-Wohnung entrümpeln</option><option>Möbelmontage</option><option>Küchenmontage</option><option>Sonstiges / mehrere Leistungen</option></select></div>
-  <div class="f-field"><label for="form-datenschutz-msg">Kurze Beschreibung (optional)</label>
-    <textarea id="form-datenschutz-msg" name="Nachricht" rows="3" placeholder="z. B. 3-Zimmer-Wohnung, 2. OG ohne Aufzug, Umzug von Herten nach Marl"></textarea></div>
-  <label class="f-check"><input type="checkbox" name="Datenschutz" value="akzeptiert" required>
-    <span>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung der Anfrage zu.*</span></label>
-  <button class="btn btn-primary btn-block btn-lg" type="submit">Kostenloses Angebot anfordern <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></button>
-  <p class="lead-note"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-check"/></svg> 100 % kostenlos &amp; unverbindlich <span class="sep">·</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-tag"/></svg> 10 % Neukunden-Rabatt</p>
-</form></aside>
-  </div>
-</section>
-<section class="sec sec-soft" id="bewertungen" aria-labelledby="bew-h">
-  <div class="wrap center">
-    <p class="eyebrow">Bewertungen</p>
-    <h2 id="bew-h">Bewertungen aus der Region</h2>
-    <p class="sec-sub">Zufriedene Kunden sind unsere beste Werbung. Waren Sie mit unserer Arbeit zufrieden? Dann freuen wir uns über Ihre Bewertung.</p>
-    <div class="reviews-widget"><!-- TODO: {{GHL_BEWERTUNGEN_EMBED}} in _build/daten.py eintragen – wird dann automatisch consent-gated geladen -->
-<div class="reviews-empty">
-  <div class="stars stars-empty" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg></div>
-  <p class="reviews-empty-title">Noch keine Online-Bewertungen – geben Sie die erste ab!</p>
-  <p>Wir sind neu online. Ihre ehrliche Meinung nach dem Auftrag hilft anderen Kundinnen und Kunden aus der Region bei der Entscheidung.</p>
-</div></div>
-    <a class="btn btn-dark" href="/bewerten/"><svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-star"/></svg> Bewerten Sie uns</a>
+<p><a href="/impressum/">Impressum</a></p></div></div></section>
+<section class="sec sec-soft referenzen" aria-labelledby="ref-h">
+  <div class="wrap">
+    <div class="center"><p class="eyebrow">Referenzen</p><h2 id="ref-h">Referenzen: echte Aufträge aus der Region</h2>
+      <p class="sec-sub">Keine Symbolbilder: Diese Fotos stammen aus unseren eigenen Umzügen, Entrümpelungen und Montagen.</p></div>
+    <div class="gallery gallery-cap"><figure><a href="/bilder/kunde/gross/img_0641.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0641-klein.webp" alt="Mitarbeiter verlädt einen weißen Schrank" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Mitarbeiter verlädt einen weißen Schrank</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0646.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0646-klein.webp" alt="Möbel werden in Stretchfolie gewickelt" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Möbel werden in Stretchfolie gewickelt</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0060.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0060-klein.webp" alt="Voll beladener Transporter mit Kartons und Möbeln" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Voll beladener Transporter mit Kartons und Möbeln</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0515.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0515-klein.webp" alt="Wohnzimmer mitten im Umzug" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Wohnzimmer mitten im Umzug</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0053.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0053-klein.webp" alt="Gestapelte Umzugskartons in einer Wohnung" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Gestapelte Umzugskartons in einer Wohnung</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0538.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0538-klein.webp" alt="Leeres, besenreines Zimmer nach der Wohnungsauflösung" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Leeres, besenreines Zimmer nach der Wohnungsauflösung</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0640.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0640-klein.webp" alt="Gesicherte Möbel im Transporter" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Gesicherte Möbel im Transporter</figcaption></figure><figure><a href="/bilder/kunde/gross/img_0513.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/img_0513-klein.webp" alt="Aufbau eines großen Kleiderschranks" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>Aufbau eines großen Kleiderschranks</figcaption></figure></div>
+    <div class="center"><a class="btn btn-primary" href="/galerie/">Alle Referenzen ansehen <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a></div>
   </div>
 </section>
 </main>
@@ -159,7 +166,7 @@
     </div>
     <div>
       <p class="f-title">Einsatzgebiete</p>
-      <ul class="f-list"><li><a href="/einsatzgebiete/herten/">Herten</a></li><li><a href="/einsatzgebiete/recklinghausen/">Recklinghausen</a></li><li><a href="/einsatzgebiete/marl/">Marl</a></li><li><a href="/einsatzgebiete/gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/einsatzgebiete/gladbeck/">Gladbeck</a></li><li><a href="/einsatzgebiete/bochum/">Bochum</a></li><li><a href="/einsatzgebiete/essen/">Essen</a></li><li><a href="/einsatzgebiete/dortmund/">Dortmund</a></li></ul>
+      <ul class="f-list"><li><a href="/umzug-herten/">Herten</a></li><li><a href="/umzug-recklinghausen/">Recklinghausen</a></li><li><a href="/umzug-marl/">Marl</a></li><li><a href="/umzug-gelsenkirchen/">Gelsenkirchen</a></li><li><a href="/umzug-gladbeck/">Gladbeck</a></li><li><a href="/umzug-bochum/">Bochum</a></li><li><a href="/umzug-essen/">Essen</a></li><li><a href="/umzug-dortmund/">Dortmund</a></li></ul>
       <a class="f-more" href="/einsatzgebiete/">Alle Einsatzgebiete <svg class="ic" aria-hidden="true" focusable="false"><use href="/icons.svg?v=3#i-arrow"/></svg></a>
     </div>
     <div>
@@ -181,6 +188,7 @@
     <p>© <span data-year>2026</span> Ruckzuckräumung Umzüge &amp; Entrümpelung</p>
     <nav aria-label="Rechtliches" class="legal">
       <a href="/kontakt/">Kontakt</a>
+      <a href="/bewerten/">Bewertung abgeben</a>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
       <button type="button" class="link-btn" data-cookie-settings>Cookie-Einstellungen</button>

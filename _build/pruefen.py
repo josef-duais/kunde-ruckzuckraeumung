@@ -55,8 +55,11 @@ for url, html in seiten.items():
         continue
     checks = {
         "Formular": 'action="https://formsubmit.co/' in html or url == "/danke/",
-        "Bewertungen+Button": ('id="bewertungen"' in html and 'href="/bewerten/"' in html) if url != "/bewerten/" else
-                              ('id="bewertungen"' not in html and 'class="cta-band"' in html),
+        "Referenzen-Abschnitt": 'class="sec sec-soft referenzen"' in html or url == "/galerie/",
+        "Hero-Hintergrundbild": "has-bg" in html,
+        "Inhaber + Telefon im Hero": url == "/danke/" or ('class="owner-card"' in html and 'href="tel:' in html),
+        "keine Chip-Linklisten": '<ul class="chips">' not in html,
+        "keine Bewertungs-Platzhalter": "Noch keine Online-Bewertungen" not in html and "TODO: {{GHL_BEWERTUNGEN" not in html,
         "Chat": "data-chat-fab" in html, "Sticky-Bar": 'class="sticky-bar"' in html, "Cookie-Banner": 'id="cc-banner"' in html,
         "Breadcrumb-Schema": '"BreadcrumbList"' in html, "Canonical": 'rel="canonical"' in html,
         "kein noindex": "noindex" not in html, "0 iframes vor Consent": "<iframe" not in re.sub(r"<template>[\s\S]*?</template>", "", html),

@@ -43,6 +43,14 @@ GOOGLE_MAPS_EMBED = (             # {{GOOGLE_MAPS_EMBED}} – Standard-Embed ohn
     "https://www.google.com/maps?q=Josefstr.+69,+45699+Herten&z=10&output=embed"
 )
 
+# Städte mit eigenen Kombi-Seiten (max. 200 Unterseiten insgesamt): Kreis Recklinghausen + große Nachbarstädte.
+# Das Einsatzgebiet bleibt 100 km – diese Orte haben eigene Seiten.
+SEITEN_STAEDTE = ["herten", "recklinghausen", "marl", "gladbeck", "dorsten", "castrop-rauxel", "datteln", "oer-erkenschwick",
+                  "haltern-am-see", "waltrop", "gelsenkirchen", "bochum", "essen", "dortmund", "herne", "bottrop", "oberhausen", "luenen"]
+
+# Echte Bewertungen: erst eintragen, wenn sie öffentlich existieren (z. B. Google-Profil). Dann erscheinen die Sterne oben auf jeder Seite.
+BEWERTUNGEN = None   # Beispiel: {"anzahl": 37, "schnitt": 4.9, "quelle": "Google", "url": "https://g.page/..."}
+
 # Leistungen (freigegeben). grid=True -> Karte im Homepage-Raster (8 Stück, wie Referenz).
 LEISTUNGEN = [
     {"slug": "umzug", "name": "Umzug", "gruppe": "Umzüge", "grid": True,

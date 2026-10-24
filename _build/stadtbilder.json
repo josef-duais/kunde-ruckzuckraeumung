@@ -28,11 +28,11 @@
   "quelle": "https://commons.wikimedia.org/wiki/File:Oer-Erkenschwick_Rathaus.jpg"
  },
  "gelsenkirchen": {
-  "datei": "Gelsenkirchen aug2004 002.jpg",
-  "urheber": "Thomas Robbin",
+  "datei": "Gelsenkirchen - Turfstraße - Schloss Horst 02 ies.jpg",
+  "urheber": "Frank Vincentz",
   "lizenz": "CC BY-SA 3.0",
-  "lizenz_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-  "quelle": "https://commons.wikimedia.org/wiki/File:Gelsenkirchen_aug2004_002.jpg"
+  "lizenz_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "quelle": "https://commons.wikimedia.org/wiki/File:Gelsenkirchen_-_Turfstra%C3%9Fe_-_Schloss_Horst_02_ies.jpg"
  },
  "gladbeck": {
   "datei": "(20250310) Flagge zeigen für Tibet 05.jpg",
@@ -42,11 +42,11 @@
   "quelle": "https://commons.wikimedia.org/wiki/File:(20250310)_Flagge_zeigen_f%C3%BCr_Tibet_05.jpg"
  },
  "castrop-rauxel": {
-  "datei": "Altstadt Castrop mit Foerderturm Erin.jpg",
-  "urheber": "Ludger1961",
-  "lizenz": "CC BY-SA 3.0",
-  "lizenz_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-  "quelle": "https://commons.wikimedia.org/wiki/File:Altstadt_Castrop_mit_Foerderturm_Erin.jpg"
+  "datei": "Castrop-Rauxel, Baudenkmal 69, Europaplatz 2020-04-09 5035.jpg",
+  "urheber": "W.Strickling",
+  "lizenz": "CC BY-SA 4.0",
+  "lizenz_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "quelle": "https://commons.wikimedia.org/wiki/File:Castrop-Rauxel,_Baudenkmal_69,_Europaplatz_2020-04-09_5035.jpg"
  },
  "bochum": {
   "datei": "Bergbaumuseum Bochum bei Nacht.JPG",
@@ -84,11 +84,11 @@
   "quelle": "https://commons.wikimedia.org/wiki/File:Haltern_am_See,_G%C3%A4nsemarkt_--_2013_--_0202.jpg"
  },
  "essen": {
-  "datei": "Aerial view of Essen.jpg",
-  "urheber": "Drdavid41",
-  "lizenz": "CC BY-SA 4.0",
-  "lizenz_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "quelle": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Essen.jpg"
+  "datei": "Zeche Zollverein abends.jpg",
+  "urheber": "Thomas Wolf, www.foto-tw.de",
+  "lizenz": "CC BY-SA 3.0 de",
+  "lizenz_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+  "quelle": "https://commons.wikimedia.org/wiki/File:Zeche_Zollverein_abends.jpg"
  },
  "olfen": {
   "datei": "Olfen, Ortsansicht -- 2014 -- 8890.jpg",
@@ -112,11 +112,11 @@
   "quelle": "https://commons.wikimedia.org/wiki/File:Witten_20090218.jpg"
  },
  "waltrop": {
-  "datei": "04 2006 Waltrop st Peter.jpg",
-  "urheber": "Lutz Mischa Heitmüller, Bonn, Germany",
-  "lizenz": "Attribution",
-  "lizenz_url": "",
-  "quelle": "https://commons.wikimedia.org/wiki/File:04_2006_Waltrop_st_Peter.jpg"
+  "datei": "Stellwerk Bahnhof Waltrop.jpg",
+  "urheber": "Linus P. S. Feix",
+  "lizenz": "CC0",
+  "lizenz_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "quelle": "https://commons.wikimedia.org/wiki/File:Stellwerk_Bahnhof_Waltrop.jpg"
  },
  "dortmund": {
   "datei": "Dortmund - Altes Stadthaus, Dortmund - 20180305155944.jpg",
@@ -1419,5 +1419,12 @@
   "lizenz": "CC BY-SA 3.0",
   "lizenz_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "quelle": "https://commons.wikimedia.org/wiki/File:Verl_-_St._Anna_Kirche_-_Blick_auf_den_Turm.jpg"
+ },
+ "herne": {
+  "datei": "Herne town hall.jpg",
+  "urheber": "Arnold Paul",
+  "lizenz": "CC BY-SA 2.5",
+  "lizenz_url": "https://creativecommons.org/licenses/by-sa/2.5",
+  "quelle": "https://commons.wikimedia.org/wiki/File:Herne_town_hall.jpg"
  }
 }
