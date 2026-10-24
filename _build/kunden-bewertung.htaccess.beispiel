@@ -1,0 +1,9 @@
+# Basic-Auth für den Admin-Bereich /kunden-bewertung/
+# 1) Diese Datei nach  public_html/kunden-bewertung/.htaccess  kopieren (Dateiname: .htaccess)
+# 2) Passwortdatei AUSSERHALB von public_html anlegen, z. B. in hPanel → Erweitert → Passwortgeschützte Verzeichnisse
+#    oder per SSH:  htpasswd -c /home/<HOSTINGER-USER>/.htpasswd-admin admin
+# 3) Den Pfad unten an Ihren Hostinger-Benutzer anpassen.
+AuthType Basic
+AuthName "Interner Bereich"
+AuthUserFile /home/<HOSTINGER-USER>/.htpasswd-admin
+Require valid-user

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /kunden-bewertung/
+
+Sitemap: https://www.ruckzuck-entruempelung-herten.de/sitemap.xml
