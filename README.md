@@ -70,9 +70,13 @@ git commit -m "Website aktualisiert"
 git push
 ```
 
-Hostinger: hPanel → Websites → Erweitert → **Git** → Repository `kunde-ruckzuckraeumung` (Branch `main`) mit
-`public_html` verbinden und **Auto-Deployment** aktivieren (Webhook-URL aus hPanel in GitHub → Settings → Webhooks eintragen).
-Ist das Repo privat, in hPanel den angezeigten Deploy-Key in GitHub → Settings → Deploy keys hinterlegen.
+**Deployment (eingerichtet und getestet, Push → live in ca. 10 Sekunden):**
+- Die Subdomain `ruckzuckraumung.wachstum-medien.de` zeigt auf `/home/u712717032/domains/wachstum-medien.de/public_html/ruckzuckraumung`.
+- Git ist deshalb in hPanel bei der Website **wachstum-medien.de** verbunden (Erweitert → GIT): Repo `kunde-ruckzuckraeumung`,
+  Branch `main`, **Root directory `public_html/ruckzuckraumung`**, Auto-Deployment aktiv.
+- „main“ ist hier der **Git-Branch**, nicht die Hauptwebsite. Die Hauptseite wachstum-medien.de wird nicht verändert –
+  es wird nur in den Unterordner `ruckzuckraumung` deployt.
+- Aufrufe über `wachstum-medien.de/ruckzuckraumung/…` leitet die `.htaccess` per 301 auf die Subdomain um.
 
 ## Wo welcher GHL-Code sitzt (alle in `_build/daten.py`)
 
