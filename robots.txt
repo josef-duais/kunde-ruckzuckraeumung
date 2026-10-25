@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /kunden-bewertung/
 
-Sitemap: https://www.ruckzuck-entruempelung-herten.de/sitemap.xml
+Sitemap: https://ruckzuckraumung.wachstum-medien.de/sitemap.xml

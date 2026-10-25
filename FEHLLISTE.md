@@ -8,7 +8,7 @@
 | 3 | GHL Bewertungs-Survey | `GHL_SURVEY_EMBED` | `/bewerten/` nutzt natives FormSubmit-Formular |
 | 4 | GHL Rabatt-Formular | `GHL_RABATT_FORMULAR_EMBED` | `/rabatt/` nutzt natives FormSubmit-Formular |
 | 5 | GHL Kunden-Bewertung (Admin) | `GHL_KUNDENBEWERTUNG_EMBED` | `/kunden-bewertung/` **nicht gebaut** |
-| 6 | Finale Domain | `SITE_URL` | vorläufig www.ruckzuck-entruempelung-herten.de (auch in `robots.txt`) |
+| 6 | Finale Domain | `SITE_URL` | aktuell ruckzuckraumung.wachstum-medien.de – bei finaler Domain in `SITE_URL` + `robots.txt` ändern |
 | 7 | Exakte Geo-Koordinaten Josefstr. 69 | `FIRMA["geo"]` | Herten-Zentrum |
 | 8 | Echte Bewertungen (z. B. Google-Profil) | `BEWERTUNGEN` in `daten.py` | noch keine – Sterne erscheinen automatisch, sobald eingetragen |
 | 9 | Logo als Vektor/PNG transparent | `bilder/logo/` | aus dem Rund-Logo freigestellt |
