@@ -70,13 +70,18 @@ git commit -m "Website aktualisiert"
 git push
 ```
 
-**Deployment (eingerichtet und getestet, Push → live in ca. 10 Sekunden):**
-- Die Subdomain `ruckzuckraumung.wachstum-medien.de` zeigt auf `/home/u712717032/domains/wachstum-medien.de/public_html/ruckzuckraumung`.
-- Git ist deshalb in hPanel bei der Website **wachstum-medien.de** verbunden (Erweitert → GIT): Repo `kunde-ruckzuckraeumung`,
-  Branch `main`, **Root directory `public_html/ruckzuckraumung`**, Auto-Deployment aktiv.
-- „main“ ist hier der **Git-Branch**, nicht die Hauptwebsite. Die Hauptseite wachstum-medien.de wird nicht verändert –
-  es wird nur in den Unterordner `ruckzuckraumung` deployt.
-- Aufrufe über `wachstum-medien.de/ruckzuckraumung/…` leitet die `.htaccess` per 301 auf die Subdomain um.
+**Live-Adresse: https://www.ruckzuck-entruempelung-herten.de** (Push → automatisch live, ca. 10 Sekunden)
+
+| Was | Wo | Einstellung |
+|---|---|---|
+| Domain | STRATO (Domainverwaltung → DNS) | A `@` → `156.67.74.45`, AAAA `@` → `2a02:4780:b:743:0:2a7b:32e8:10`, `www` folgt der Domain; MX/E-Mail unverändert bei STRATO |
+| Hosting | Hostinger, Website **ruckzuck-entruempelung-herten.de** | Erweitert → GIT: Repo `kunde-ruckzuckraeumung`, Branch `main`, Root `public_html`, Auto-Deployment aktiv; Lifetime SSL |
+| Vorschau (alt) | Hostinger, Website wachstum-medien.de | GIT mit Root `public_html/ruckzuckraumung` (= ruckzuckraumung.wachstum-medien.de) – leitet per 301 auf die Hauptadresse |
+
+- „main“ ist der **Git-Branch**, nicht die Hauptwebsite wachstum-medien.de – die wird nie verändert.
+- Die `.htaccess` leitet alle Nebenadressen (ohne www, Subdomain, Unterordner) per 301 auf `https://www.ruckzuck-entruempelung-herten.de`.
+- Das alte STRATO-Webhosting („STRATO Hosting Basic“) wird für die Website nicht mehr benötigt – vor einer Kündigung prüfen,
+  ob dort noch E-Mail-Postfächer genutzt werden (MX zeigt weiter auf STRATO).
 
 ## Wo welcher GHL-Code sitzt (alle in `_build/daten.py`)
 

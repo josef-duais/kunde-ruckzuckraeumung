@@ -4,7 +4,7 @@ Phase 2 erweitert nur diese Datei (neue Leistungen/Städte) – build.py erzeugt
 """
 
 # TODO: Finale Domain eintragen, sobald sie feststeht (wird für Canonical, OG, JSON-LD und FormSubmit-Redirect genutzt).
-SITE_URL = "https://ruckzuckraumung.wachstum-medien.de"
+SITE_URL = "https://www.ruckzuck-entruempelung-herten.de"
 
 FIRMA = {
     "name": "Ruckzuckräumung Umzüge & Entrümpelung",

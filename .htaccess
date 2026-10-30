@@ -9,9 +9,10 @@ RedirectMatch 404 /\.git
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  # Aufruf über die Hauptdomain (wachstum-medien.de/ruckzuckraumung/…) → Subdomain (kein Duplicate Content)
-  RewriteCond %{HTTP_HOST} !^ruckzuckraumung\.wachstum-medien\.de$ [NC]
-  RewriteRule ^(.*)$ https://ruckzuckraumung.wachstum-medien.de/$1 [L,R=301]
+  # Eine Hauptadresse: alles (ohne www, Subdomain ruckzuckraumung.wachstum-medien.de, wachstum-medien.de/ruckzuckraumung/)
+  # per 301 auf https://www.ruckzuck-entruempelung-herten.de – kein Duplicate Content
+  RewriteCond %{HTTP_HOST} !^www\.ruckzuck-entruempelung-herten\.de$ [NC]
+  RewriteRule ^(.*)$ https://www.ruckzuck-entruempelung-herten.de/$1 [L,R=301]
   # HTTPS erzwingen
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
