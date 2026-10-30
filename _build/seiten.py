@@ -182,7 +182,7 @@ def referenzen(seed, n=8, titel="Referenzen: echte Aufträge aus der Region"):
     r = rng("referenzen", seed)
     fotos = list(GALERIE_FOTOS)
     r.shuffle(fotos)
-    figs = "".join(f'<figure><a href="/bilder/kunde/gross/{d}.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/{d}-klein.webp" '
+    figs = "".join(f'<figure><a href="/bilder/kunde/gross/{d}.webp" data-lightbox><img src="/bilder/kunde/gross/{d}-klein.webp" '
                    f'alt="{escape(a)}" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>{escape(a)}</figcaption></figure>'
                    for d, a in fotos[:n])
     return f"""<section class="sec sec-soft referenzen" aria-labelledby="ref-h">
@@ -276,7 +276,7 @@ def stadtfoto(s, cls="city-photo"):
     credit = (f'Foto: {escape(m["urheber"])}, <a href="{escape(m["lizenz_url"] or m["quelle"])}" rel="noopener nofollow" target="_blank">{escape(m["lizenz"])}</a>, '
               f'via <a href="{escape(m["quelle"])}" rel="noopener nofollow" target="_blank">Wikimedia Commons</a>')
     return (f'<figure class="{cls}"><img src="/bilder/staedte/{s["slug"]}.webp" alt="Stadtansicht {escape(s["name"])}" width="800" height="500" '
-            f'loading="lazy" decoding="async"><figcaption>{credit}</figcaption></figure>')
+            f'loading="lazy" decoding="async"></figure>')  # Nachweis: /bildnachweise/
 
 
 def fakten_box(fakten, stadt):
@@ -359,7 +359,7 @@ def kombi_seite(s, lslug, salt=None):
 {sub_hero(f"{l['kw_kurz']} · {stadt}" + (f" · {f['kreis']}" if f['kreis'] else ''), k['h1'], k['intro'][0],
           [f"{l['objekt_gross']} – alles aus einer Hand", f"Vor Ort in {stadt}" + (f" und Stadtteilen wie {k['teile'][0]}" if k['teile'] else " und Umgebung"),
            "Schriftliches Angebot vorab – kostenlos & unverbindlich"], form,
-          bg=hero_bg, credit=hero_credit(s["slug"]),
+          bg=hero_bg,
           urgency=[f"Kurzfristige Termine in {stadt} – auch samstags", "10 % Neukunden-Rabatt auf den ersten Auftrag"])}
 {trustbar()}
 <section class="sec sec-light" aria-labelledby="intro-h">
@@ -406,7 +406,7 @@ def kombi_seite(s, lslug, salt=None):
   </div>
 </section>
 {cta_band(f"Kostenloses Angebot für {l['akk']} in {stadt}", "Besichtigung kostenlos · Antwort vom Inhaber · 10 % Neukunden-Rabatt")}
-{bildnachweise([s['slug']] + [n['slug'] for n in nahe_l[:3]])}"""
+"""
     lds = [crumb_ld, service_ld(f"{l['kw']} {stadt}", url, k["desc"], area_city(s)), faq_ld(k["faqs"])]
     return B.page(B.head(k["title"], k["desc"], url, jsonld=lds, preload_img=hero_bg), body)
 
@@ -472,7 +472,7 @@ def leistung_seite(lslug):
 </section>
 {faq_html(faqs, f"Häufige Fragen zu {l['dat']}")}
 {cta_band(f"Kostenloses Angebot für {l['akk']}", "Besichtigung kostenlos · Antwort vom Inhaber · 10 % Neukunden-Rabatt")}
-{bildnachweise([x['slug'] for x in STAEDTE])}"""
+"""
     title = f"{l['kw']} in Herten & Umgebung | Ruckzuckräumung"
     desc = f"{l['kw']} vom Team aus Herten: {l['objekt']} – kostenlose Besichtigung, schriftliches Angebot vorab, 10 % Neukunden-Rabatt."
     lds = [crumb_ld, service_ld(l["kw"], url, desc, {"@type": "GeoCircle", "geoMidpoint": {"@type": "GeoCoordinates", "latitude": FIRMA["geo"][0],
@@ -516,7 +516,7 @@ def hub_seite():
 </section>
 {garantien("Unsere Garantien – in jeder Stadt", "raeumung")}
 {referenzen("hub")}
-{bildnachweise([x['slug'] for x in STAEDTE])}"""
+"""
     title = "Einsatzgebiete: Kreis Recklinghausen & Ruhrgebiet | Ruckzuckräumung"
     desc = "Umzug, Entrümpelung & Montage in Herten, Recklinghausen, Marl, Gelsenkirchen, Bochum, Essen, Dortmund und im Umkreis von 100 km."
     return B.page(B.head(title, desc[:158], url, jsonld=[crumb_ld], preload_img=hero_bg), body)

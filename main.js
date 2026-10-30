@@ -52,6 +52,64 @@
     document.querySelectorAll("a[data-cta]").forEach(function (a) { a.setAttribute("href", "#anfrage"); });
   }
 
+  /* ---------- Lightbox: Fotos öffnen als Popup auf derselben Seite (Pfeile, Esc, Wischen) */
+  var lbLinks = Array.prototype.slice.call(document.querySelectorAll("a[data-lightbox]"));
+  if (lbLinks.length) {
+    var lb = document.createElement("div");
+    lb.className = "lb";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-modal", "true");
+    lb.setAttribute("aria-label", "Bildansicht");
+    lb.hidden = true;
+    lb.innerHTML = '<button type="button" class="lb-close" aria-label="Schließen">&times;</button>' +
+      '<button type="button" class="lb-prev" aria-label="Vorheriges Bild">&#8249;</button>' +
+      '<figure class="lb-fig"><img alt=""><figcaption></figcaption></figure>' +
+      '<button type="button" class="lb-next" aria-label="Nächstes Bild">&#8250;</button>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector("img"), lbCap = lb.querySelector("figcaption"), lbIdx = 0, lastFocus = null;
+    function lbShow(i) {
+      lbIdx = (i + lbLinks.length) % lbLinks.length;
+      var a = lbLinks[lbIdx], img = a.querySelector("img"), fig = a.closest("figure"), cap = fig && fig.querySelector("figcaption");
+      lbImg.src = a.getAttribute("href");
+      lbImg.alt = img ? img.alt : "";
+      lbCap.textContent = cap ? cap.textContent : (img ? img.alt : "");
+    }
+    function lbOpen(i) {
+      lastFocus = document.activeElement;
+      lbShow(i);
+      lb.hidden = false;
+      document.body.style.overflow = "hidden";
+      lb.querySelector(".lb-close").focus();
+    }
+    function lbClose() {
+      lb.hidden = true;
+      lbImg.removeAttribute("src");
+      document.body.style.overflow = "";
+      if (lastFocus) lastFocus.focus();
+    }
+    lbLinks.forEach(function (a, i) {
+      a.addEventListener("click", function (e) { e.preventDefault(); lbOpen(i); });
+    });
+    lb.querySelector(".lb-close").addEventListener("click", lbClose);
+    lb.querySelector(".lb-prev").addEventListener("click", function () { lbShow(lbIdx - 1); });
+    lb.querySelector(".lb-next").addEventListener("click", function () { lbShow(lbIdx + 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lbClose(); });
+    document.addEventListener("keydown", function (e) {
+      if (lb.hidden) return;
+      if (e.key === "Escape") lbClose();
+      else if (e.key === "ArrowLeft") lbShow(lbIdx - 1);
+      else if (e.key === "ArrowRight") lbShow(lbIdx + 1);
+    });
+    var touchX = null;
+    lb.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) lbShow(lbIdx + (dx < 0 ? 1 : -1));
+      touchX = null;
+    });
+  }
+
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
   /* ---------- Cookie-Consent (Opt-in). Drittanbieter laden erst nach Einwilligung. */

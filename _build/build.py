@@ -13,7 +13,7 @@ from daten import (FIRMA, FORMSUBMIT_ZIEL, GHL_BEWERTUNGEN_EMBED, GHL_CHAT_WIDGE
                    KARTE_LABELS, LEISTUNGEN, SITE_URL)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-ASSET_VERSION = "3"  # bei CSS/JS-Änderungen erhöhen (Cache-Busting)
+ASSET_VERSION = "4"  # bei CSS/JS-Änderungen erhöhen (Cache-Busting)
 
 # Einsatzgebiete: alle Städte mit Stadtrecht im 100-km-Radius (echte Daten, siehe staedte_holen.py)
 STAEDTE_DATEN = json.loads((ROOT / "_build" / "staedte.json").read_text(encoding="utf-8"))
@@ -284,6 +284,7 @@ def footer():
       <a href="/bewerten/">Bewertung abgeben</a>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
+      <a href="/bildnachweise/">Bildnachweise</a>
       <button type="button" class="link-btn" data-cookie-settings>Cookie-Einstellungen</button>
     </nav>
   </div>
@@ -494,7 +495,6 @@ def homepage():
     <div class="svc-grid">{karten}</div>
   </div>
 </section>
-<nav class="seo-links" aria-label="Beliebte Leistungen in der Region"><p class="wrap">{seo_line}</p></nav>
 
 <section class="sec sec-dark" id="ueber-uns" aria-labelledby="about-h">
   <div class="wrap about-grid">
@@ -596,7 +596,6 @@ def homepage():
     </div>
   </div>
 </section>
-{S.bildnachweise([x['slug'] for x in S.STAEDTE])}
 """
 
 

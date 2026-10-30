@@ -149,7 +149,7 @@ def galerie():
     kats = []
     for kat in ("Umzug & Transport", "Entrümpelung", "Montage"):
         figs = "".join(
-            f'<figure><a href="/bilder/kunde/gross/{d}.webp" target="_blank" rel="noopener"><img src="/bilder/kunde/gross/{d}-klein.webp" alt="{escape(a)}" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>{escape(a)}</figcaption></figure>'
+            f'<figure><a href="/bilder/kunde/gross/{d}.webp" data-lightbox><img src="/bilder/kunde/gross/{d}-klein.webp" alt="{escape(a)}" width="600" height="600" loading="lazy" decoding="async"></a><figcaption>{escape(a)}</figcaption></figure>'
             for d, k, a in GALERIE if k == kat)
         kats.append(f'<h2 class="gal-h">{escape(kat)}</h2><div class="gallery gallery-cap">{figs}</div>')
     body = f"""{S.sub_hero("Galerie · Referenzen", "Galerie: echte Fotos aus unseren Aufträgen",
@@ -261,6 +261,31 @@ def rechtsseite(url, name, h1, inhalt, desc):
     return seite(url, f"{name} | Ruckzuckräumung", desc, [("Startseite", "/"), (name, url)], body, preload_img="/bilder/hero/seite-recht.webp")
 
 
+# --------------------------------------------------------------------------- Bildnachweise (Pflicht für CC-BY-SA-Stadtfotos)
+
+def bildnachweise():
+    zeilen = []
+    for x in S.STAEDTE:
+        m = S.FOTOS.get(x["slug"])
+        if m:
+            zeilen.append(f'<li><strong>{escape(x["name"])}</strong> – Foto: {escape(m["urheber"])}, Lizenz: '
+                          f'<a href="{escape(m["lizenz_url"] or m["quelle"])}" rel="noopener nofollow">{escape(m["lizenz"])}</a>, '
+                          f'Quelle: <a href="{escape(m["quelle"])}" rel="noopener nofollow">Wikimedia Commons</a> (zugeschnitten)</li>')
+    inhalt = f"""<h2>Eigene Fotos</h2>
+<p>Alle Fotos von Umzügen, Entrümpelungen, Montagen und unserem Team stammen aus eigenen Aufträgen von Ruckzuckräumung.</p>
+<h2>Stadtansichten</h2>
+<p>Die Stadtfotos stammen von Wikimedia Commons und stehen unter freien Lizenzen. Wir nennen die Urheber gemäß Lizenz:</p>
+<ul>{''.join(zeilen)}</ul>
+<h2>Weitere Fotos</h2>
+<p>Einzelne Symbolfotos (Umzugskartons, Küche, Büro, Abstellraum) stammen von <a href="https://unsplash.com/license" rel="noopener nofollow">Unsplash</a> und sind kommerziell frei nutzbar.</p>"""
+    form = formular("form-bildnachweise", "Kostenloses Angebot", "Kostenlos &amp; unverbindlich.", "Bildnachweise", "bildnachweise")
+    body = f"""{S.sub_hero("Rechtliches", "Bildnachweise", "Urheber und Lizenzen der auf dieser Website verwendeten Fotos.",
+                    ["Umzug, Entrümpelung & Montage", "Herten & Umgebung", "Kostenlose Besichtigung"], form, bg="/bilder/hero/seite-recht.webp")}
+<section class="sec sec-light"><div class="wrap narrow"><div class="prose rechtstext">{inhalt}</div></div></section>"""
+    return seite("/bildnachweise/", "Bildnachweise | Ruckzuckräumung", "Bildnachweise und Lizenzen der Fotos auf der Website von Ruckzuckräumung.",
+                 [("Startseite", "/"), ("Bildnachweise", "/bildnachweise/")], body, preload_img="/bilder/hero/seite-recht.webp")
+
+
 # --------------------------------------------------------------------------- Funnel
 
 def bewerten():
@@ -345,7 +370,7 @@ def alle(write):
         "/ueber-uns/": ueber_uns(), "/galerie/": galerie(), "/kontakt/": kontakt(),
         "/impressum/": rechtsseite("/impressum/", "Impressum", "Impressum", IMPRESSUM, "Impressum von Ruckzuckräumung & Umzüge-Entrümpelung, Inhaber Lucien Fynn Khaouli, Josefstr. 69, 45699 Herten."),
         "/datenschutz/": rechtsseite("/datenschutz/", "Datenschutz", "Datenschutzerklärung", DATENSCHUTZ, "Datenschutzerklärung von Ruckzuckräumung & Umzüge-Entrümpelung, Herten."),
-        "/bewerten/": bewerten(), "/rabatt/": rabatt(), "/danke/": danke(),
+        "/bewerten/": bewerten(), "/rabatt/": rabatt(), "/danke/": danke(), "/bildnachweise/": bildnachweise(),
     }
     for url, html in seiten.items():
         write(url, html, quiet=True)
