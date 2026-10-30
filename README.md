@@ -76,7 +76,7 @@ git push
 |---|---|---|
 | Domain | STRATO (Domainverwaltung → DNS) | A `@` → `156.67.74.45`, AAAA `@` → `2a02:4780:b:743:0:2a7b:32e8:10`, `www` folgt der Domain; MX/E-Mail unverändert bei STRATO |
 | Hosting | Hostinger, Website **ruckzuck-entruempelung-herten.de** | Erweitert → GIT: Repo `kunde-ruckzuckraeumung`, Branch `main`, Root `public_html`, Auto-Deployment aktiv; Lifetime SSL |
-| Vorschau (alt) | Hostinger, Website wachstum-medien.de | GIT mit Root `public_html/ruckzuckraumung` (= ruckzuckraumung.wachstum-medien.de) – leitet per 301 auf die Hauptadresse |
+| Vorschau (alt) | Hostinger, Ordner `wachstum-medien.de/public_html/ruckzuckraumung` | nicht mehr per Git verbunden (Git der Hauptwebsite nutzt jetzt ein anderes Repo); dortige `.htaccess` leitet alles per 301 auf die Hauptadresse |
 
 - „main“ ist der **Git-Branch**, nicht die Hauptwebsite wachstum-medien.de – die wird nie verändert.
 - Die `.htaccess` leitet alle Nebenadressen (ohne www, Subdomain, Unterordner) per 301 auf `https://www.ruckzuck-entruempelung-herten.de`.
